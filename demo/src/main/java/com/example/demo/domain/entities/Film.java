@@ -232,4 +232,9 @@ public class Film implements Serializable {
 		return inventory;
 	}
 
+	@Override
+	public String toString() {
+		return "Film [filmId=" + filmId + ", title=" + title + "]";
+	}
+
 }
