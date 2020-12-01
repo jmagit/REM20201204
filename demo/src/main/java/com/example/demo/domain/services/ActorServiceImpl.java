@@ -77,7 +77,7 @@ public class ActorServiceImpl implements ActorService {
 	@Transactional
 	public Actor add(Actor item) throws InvalidDataException {
 		if(isInvalid(item))
-			throw new InvalidDataException("Invalid data");
+			throw new InvalidDataException(item.getErrorsString());
 		if(getOne(item.getActorId()).isPresent())
 			throw new InvalidDataException("Duplicate key");
 		return dao.save(item);
@@ -86,7 +86,7 @@ public class ActorServiceImpl implements ActorService {
 	@Transactional
 	public Actor modify(Actor item) throws NotFoundException, InvalidDataException {
 		if(isInvalid(item))
-			throw new InvalidDataException("Invalid data");
+			throw new InvalidDataException(item.getErrorsString());
 		if(!getOne(item.getActorId()).isPresent())
 			throw new NotFoundException();
 		return dao.save(item);

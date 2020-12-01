@@ -59,7 +59,7 @@ public class DemoApplication implements CommandLineRunner {
 //		} else 
 //			dao.save(item);
 //		srv.getAll(Sort.by("FirstName","LastName").descending()).stream().forEach(item -> System.out.println(item));
-		srv.add(new Actor(1, "11","AAA"));
+//		srv.add(new Actor(1, "11","AAA"));
 	}
 
 }
