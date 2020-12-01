@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -24,13 +25,22 @@ public class ApiExceptionHandler {
         return new ErrorMessage(exception.getMessage(), request.getRequestURI());
     }
 
-    @ExceptionHandler({ BadRequestException.class, InvalidDataException.class,
-    	MethodArgumentNotValidException.class
+    @ExceptionHandler({ BadRequestException.class, InvalidDataException.class
 	})
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorMessage badRequest(Exception exception) {
         return new ErrorMessage("Invalid data", exception.getMessage());
     }
+    
+	@ExceptionHandler({ MethodArgumentNotValidException.class })
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ResponseBody
+	public ErrorMessage methodArgumentNotValid(MethodArgumentNotValidException exception) {
+		StringBuilder sb = new StringBuilder("ERRORES:");
+		exception.getBindingResult().getFieldErrors().stream()
+				.forEach(err -> sb.append(" " + err.getField() + ": " + err.getDefaultMessage()));
+		return new ErrorMessage("Invalid data", sb.toString());
+	}
 }
 

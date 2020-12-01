@@ -1,12 +1,17 @@
 package com.example.demo.application.resources;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.domain.entities.Persona;
 import com.example.demo.domain.entities.dtos.ErrorMessage;
 
 @RestController
@@ -38,4 +43,13 @@ public class DemosResource {
 	public String producesText() {
 		return "Esto es Text";
 	}
+	
+	@GetMapping(path = "/persona")
+	public Persona persona() {
+		return new Persona(666,"ddd","NIF", "");
+	}
+	@PostMapping(path = "/persona")
+	public void persona(@Valid @RequestBody Persona item) {
+	}
+
 }
