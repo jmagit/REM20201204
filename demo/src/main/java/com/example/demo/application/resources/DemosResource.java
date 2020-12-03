@@ -2,6 +2,7 @@ package com.example.demo.application.resources;
 
 import javax.validation.Valid;
 
+import org.apache.logging.log4j.message.Message;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.domain.entities.Persona;
 import com.example.demo.domain.entities.dtos.ErrorMessage;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
+@Api(value = "Demostraciones del curso", description = "La literatura ....")
 public class DemosResource {
 
 	@GetMapping("/cotilla/{id}")
@@ -49,7 +57,12 @@ public class DemosResource {
 		return new Persona(666,"ddd","NIF", "");
 	}
 	@PostMapping(path = "/persona")
-	public void persona(@Valid @RequestBody Persona item) {
+	@ApiOperation(value = "Prueba de la validación del nif")
+	@ApiResponses({
+		@ApiResponse(code=200, message = "los datos son validos"),
+		@ApiResponse(code=400, message = "no cumple las reglas de validación")
+	})
+	public void persona(@ApiParam(value = "Datos de la persona") @Valid @RequestBody Persona item) {
 	}
 
 }

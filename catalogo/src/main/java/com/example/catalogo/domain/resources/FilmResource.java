@@ -70,7 +70,7 @@ public class FilmResource {
 	})
 	public FilmShortDTO getOneCorto(
 			@ApiParam(value = "Identificador de la pelicula", required = true) @PathVariable int id, 
-			@ApiParam(required = false, allowableValues = "details,short,edit", defaultValue = "edit") @RequestParam(required = false, defaultValue = "edit") String mode) throws Exception {
+			@ApiParam(required = false, allowEmptyValue = true, allowableValues = "details,short,edit", defaultValue = "edit") @RequestParam(required = false, defaultValue = "edit") String mode) throws Exception {
 		Optional<Film> rslt = dao.findById(id);
 		if (!rslt.isPresent())
 			throw new NotFoundException();

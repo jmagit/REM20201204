@@ -7,9 +7,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.example.demo.domain.entities.Actor;
 
+@RepositoryRestResource(exported = false)
 public interface ActorRepository extends JpaRepository<Actor, Integer> {
 	List<Actor> findByFirstNameStartingWithOrLastNameEndingWithOrderByActorIdDesc(String prefijos, String sugijo);
 	@Query("from Actor where actorId < ?1")

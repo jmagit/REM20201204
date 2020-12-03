@@ -37,7 +37,7 @@ public class Language extends EntityBase implements Serializable {
 
 	@Column(name="last_update")
 	@JsonView(Language.Complete.class)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss")
 	private Timestamp lastUpdate = new Timestamp(System.currentTimeMillis());
 
 	//bi-directional many-to-one association to Film

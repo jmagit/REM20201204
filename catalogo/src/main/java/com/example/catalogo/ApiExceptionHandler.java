@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.example.catalogo.application.dtos.ErrorMessage;
 import com.example.demo.exceptions.BadRequestException;
@@ -28,7 +29,7 @@ public class ApiExceptionHandler {
 	}
 
 	@ExceptionHandler({ BadRequestException.class, MissingRequestHeaderException.class, FilerException.class,
-			InvalidDataException.class })
+			InvalidDataException.class, MethodArgumentTypeMismatchException.class })
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
 	public ErrorMessage badRequest(Exception exception) {
