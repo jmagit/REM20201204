@@ -86,7 +86,7 @@ public class DemosResource {
 	public List<FilmRemotoDTO> getPelis() throws NotFoundException, BadRequestException {
 		try {
 			ResponseEntity<List<FilmRemotoDTO>> response = srv.exchange(
-					"http://localhost:8011/peliculas?mode=short", 
+					"http://localhost:8080/catalogo/peliculas?mode=short", 
 					HttpMethod.GET,
 					HttpEntity.EMPTY, 
 					new ParameterizedTypeReference<List<FilmRemotoDTO>>() {	}
