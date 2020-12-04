@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.data.domain.Sort;
 
 import com.example.demo.domain.contracts.ActorService;
@@ -20,6 +21,7 @@ import com.example.demo.infraestructure.repositories.ActorRepository;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 
 @EnableOpenApi
+@EnableEurekaClient
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
 
