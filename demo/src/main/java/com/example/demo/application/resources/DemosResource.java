@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.demo.MiConfig;
 import com.example.demo.application.proxies.CatalogoProxy;
 import com.example.demo.domain.entities.Persona;
 import com.example.demo.domain.entities.dtos.ErrorMessage;
@@ -136,5 +137,12 @@ public class DemosResource {
 				"http://CATALOGO-SERVICE/", 
 				String.class);
 //		return proxy.getCatalogo();
+	}
+	@Autowired
+	MiConfig config;
+	
+	@GetMapping(path = "/config")
+	public String miConfig( ) {
+		return "Min: " + config.getMin() + " Max: " + config.getMax();
 	}
 }
